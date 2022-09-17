@@ -37,7 +37,7 @@ public class ImportService {
             log.info("Ztpspf file: {}", args.getZtpspf());
             List<SurValueDto> surValueDtos = textService.readSurValues(Path.of(args.getZtpspf()));
             surValueDtos.forEach(surValuesDto -> log.debug("Surrender values object: {}", surValuesDto));
-//            surValueService.saveAll(surValueDtos);
+            surValueService.saveAll(surValueDtos);
         }
         if (!StringUtils.isEmpty(args.getOutph())) {
             log.info("Outpay header file: {}", args.getOutph());

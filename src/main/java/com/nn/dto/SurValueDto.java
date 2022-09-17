@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public record SurValueDto(
         String company,
         String chdrnum,
-        float surrenderValue,
+        Double surrenderValue,
         String jobUser,
         String jobName,
         LocalDate jobTimestamp) {

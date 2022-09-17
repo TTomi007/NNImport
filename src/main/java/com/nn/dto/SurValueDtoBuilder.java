@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public final class SurValueDtoBuilder {
     private String company;
     private String chdrnum;
-    private float surrenderValue;
+    private Double surrenderValue;
     private String jobUser;
     private String jobName;
     private LocalDate jobTimestamp;
@@ -13,7 +13,7 @@ public final class SurValueDtoBuilder {
     private SurValueDtoBuilder() {
     }
 
-    public static SurValueDtoBuilder aSurValuesDto() {
+    public static SurValueDtoBuilder aSurValueDto() {
         return new SurValueDtoBuilder();
     }
 
@@ -27,7 +27,7 @@ public final class SurValueDtoBuilder {
         return this;
     }
 
-    public SurValueDtoBuilder withSurrenderValue(float surrenderValue) {
+    public SurValueDtoBuilder withSurrenderValue(Double surrenderValue) {
         this.surrenderValue = surrenderValue;
         return this;
     }

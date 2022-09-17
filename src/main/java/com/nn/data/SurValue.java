@@ -19,7 +19,7 @@ public class SurValue {
     private String chdrnum;
 
     @Column(nullable = false, length = 15, precision = 2)
-    private Float surValue;
+    private Double survalue;
 
     @Column(nullable = false, length = 1)
     private String company;
@@ -28,7 +28,7 @@ public class SurValue {
     private String currency;
 
     @Column(length = 10)
-    private String validDate;
+    private String validdate;
 
     public Integer getId() {
         return id;
@@ -46,12 +46,12 @@ public class SurValue {
         this.chdrnum = chdrnum;
     }
 
-    public Float getSurValue() {
-        return surValue;
+    public Double getSurvalue() {
+        return survalue;
     }
 
-    public void setSurValue(Float surValue) {
-        this.surValue = surValue;
+    public void setSurvalue(Double survalue) {
+        this.survalue = survalue;
     }
 
     public String getCompany() {
@@ -70,11 +70,11 @@ public class SurValue {
         this.currency = currency;
     }
 
-    public String getValidDate() {
-        return validDate;
+    public String getValiddate() {
+        return validdate;
     }
 
-    public void setValidDate(String validDate) {
-        this.validDate = validDate;
+    public void setValiddate(String validdate) {
+        this.validdate = validdate;
     }
 }

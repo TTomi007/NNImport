@@ -59,10 +59,10 @@ public class TextService {
     }
 
     private SurValueDto mapToSurValuesDto(String line) {
-        return SurValueDtoBuilder.aSurValuesDto()
+        return SurValueDtoBuilder.aSurValueDto()
                 .withCompany(String.valueOf(line.charAt(0)))
                 .withChdrnum(line.substring(1, 9))
-                .withSurrenderValue(Float.parseFloat(line.substring(9, 24).trim()))
+                .withSurrenderValue(Double.parseDouble(line.substring(9, 24).trim()))
                 .withJobUser(line.substring(24, 31))
                 .withJobName(line.substring(31, 42).trim())
                 .withJobTimestamp(LocalDate.parse(line.substring(42, 54).trim()))

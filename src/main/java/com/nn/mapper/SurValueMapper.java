@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface SurValueMapper {
 
-    @Mapping(target="surValue", source="surValueDto.surrenderValue")
-    @Mapping(target="validDate", source="surValueDto.jobTimestamp")
+    @Mapping(target="survalue", source="surValueDto.surrenderValue")
+    @Mapping(target="validdate", source="surValueDto.jobTimestamp")
     SurValue SurValueDtoToSurValue(SurValueDto surValueDto);
 }

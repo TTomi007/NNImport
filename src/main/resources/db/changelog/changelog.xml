@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="initdb" author="ttomi007">
+        <createTable tableName="SurValues">
+            <column name="ID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Chdrnum" type="char(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Survalue" type="decimal(15, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Company" type="char(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Currency" type="char(3)"/>
+            <column name="ValidDate" type="char(10)"/>
+        </createTable>
+        <createTable tableName="OutPay_Header">
+            <column name="Outpay_Header_ID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Clntnum" type="char(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Chdrnum" type="char(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LetterType" type="char(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PrintDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DataID" type="char(6)"/>
+            <column name="ClntName" type="nvarchar(80)"/>
+            <column name="ClntAddress" type="nvarchar(80)"/>
+            <column name="RegDate" type="datetime"/>
+            <column name="BenPercent" type="decimal(6, 2)"/>
+            <column name="Role1" type="char(2)"/>
+            <column name="Role2" type="char(2)"/>
+            <column name="CownNum" type="char(8)"/>
+            <column name="CownName" type="nvarchar(80)"/>
+            <column name="Notice01" type="nvarchar(80)"/>
+            <column name="Notice02" type="nvarchar(80)"/>
+            <column name="Notice03" type="nvarchar(80)"/>
+            <column name="Notice04" type="nvarchar(80)"/>
+            <column name="Notice05" type="nvarchar(80)"/>
+            <column name="Notice06" type="nvarchar(80)"/>
+            <column name="Claim_ID" type="char(9)"/>
+            <column name="TP2ProcessDate" type="datetime"/>
+        </createTable>
+        <createTable tableName="Policy">
+            <column name="ID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="Chdrnum" type="char(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Cownnum" type="char(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OwnerName" type="nvarchar(50)"/>
+            <column name="LifcNum" type="char(8)"/>
+            <column name="LifcName" type="nvarchar(50)"/>
+            <column name="Aracde" type="char(3)"/>
+            <column name="Agntnum" type="char(5)"/>
+            <column name="MailAddress" type="nvarchar(50)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
+

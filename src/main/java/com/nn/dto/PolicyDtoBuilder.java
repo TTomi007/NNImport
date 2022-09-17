@@ -58,15 +58,6 @@ public final class PolicyDtoBuilder {
     }
 
     public PolicyDto build() {
-        PolicyDto policyDto = new PolicyDto();
-        policyDto.setChdrNum(chdrNum);
-        policyDto.setCownNum(cownNum);
-        policyDto.setOwnerName(ownerName);
-        policyDto.setLifcNum(lifcNum);
-        policyDto.setLifcName(lifcName);
-        policyDto.setAracde(aracde);
-        policyDto.setAgntNum(agntNum);
-        policyDto.setMailAddress(mailAddress);
-        return policyDto;
+        return new PolicyDto(chdrNum, cownNum, ownerName, lifcNum, lifcName, aracde, agntNum, mailAddress);
     }
 }

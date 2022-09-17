@@ -96,21 +96,6 @@ public final class OutpayHeaderDtoBuilder {
     }
 
     public OutpayHeaderDto build() {
-        OutpayHeaderDto outpayHeaderDto = new OutpayHeaderDto();
-        outpayHeaderDto.setClntNum(clntNum);
-        outpayHeaderDto.setChdrNum(chdrNum);
-        outpayHeaderDto.setLetterType(letterType);
-        outpayHeaderDto.setPrintDate(printDate);
-        outpayHeaderDto.setClaimId(claimId);
-        outpayHeaderDto.setDataId(dataId);
-        outpayHeaderDto.setRegDate(regDate);
-        outpayHeaderDto.setClntName(clntName);
-        outpayHeaderDto.setClntAddress(clntAddress);
-        outpayHeaderDto.setBenPercent(benPercent);
-        outpayHeaderDto.setRole1(role1);
-        outpayHeaderDto.setRole2(role2);
-        outpayHeaderDto.setCownNum(cownNum);
-        outpayHeaderDto.setCownName(cownName);
-        return outpayHeaderDto;
+        return new OutpayHeaderDto(clntNum, chdrNum, letterType, printDate, claimId, dataId, regDate, clntName, clntAddress, benPercent, role1, role2, cownNum, cownName);
     }
 }

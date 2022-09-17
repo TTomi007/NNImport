@@ -48,13 +48,6 @@ public final class SurValuesDtoBuilder {
     }
 
     public SurValuesDto build() {
-        SurValuesDto surValuesDto = new SurValuesDto();
-        surValuesDto.setCompany(company);
-        surValuesDto.setChdrnum(chdrnum);
-        surValuesDto.setSurrenderValue(surrenderValue);
-        surValuesDto.setJobUser(jobUser);
-        surValuesDto.setJobName(jobName);
-        surValuesDto.setJobTimestamp(jobTimestamp);
-        return surValuesDto;
+        return new SurValuesDto(company, chdrnum, surrenderValue, jobUser, jobName, jobTimestamp);
     }
 }

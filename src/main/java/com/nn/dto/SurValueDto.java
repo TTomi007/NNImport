@@ -2,7 +2,7 @@ package com.nn.dto;
 
 import java.time.LocalDate;
 
-public record SurValuesDto(
+public record SurValueDto(
         String company,
         String chdrnum,
         float surrenderValue,

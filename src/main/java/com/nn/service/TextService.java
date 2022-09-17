@@ -4,8 +4,8 @@ import com.nn.dto.OutpayHeaderDto;
 import com.nn.dto.OutpayHeaderDtoBuilder;
 import com.nn.dto.PolicyDto;
 import com.nn.dto.PolicyDtoBuilder;
-import com.nn.dto.SurValuesDto;
-import com.nn.dto.SurValuesDtoBuilder;
+import com.nn.dto.SurValueDto;
+import com.nn.dto.SurValueDtoBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,8 @@ public class TextService {
 
     private static final Logger log = LoggerFactory.getLogger(TextService.class);
 
-    public List<SurValuesDto> readSurValues(Path filePath) {
-        List<SurValuesDto> result = new ArrayList<>();
+    public List<SurValueDto> readSurValues(Path filePath) {
+        List<SurValueDto> result = new ArrayList<>();
         try (Stream<String> lines = Files.lines(filePath, StandardCharsets.ISO_8859_1)) {
             result.addAll(lines.map(this::mapToSurValuesDto).toList());
         } catch (IOException e) {
@@ -58,8 +58,8 @@ public class TextService {
         return result;
     }
 
-    private SurValuesDto mapToSurValuesDto(String line) {
-        return SurValuesDtoBuilder.aSurValuesDto()
+    private SurValueDto mapToSurValuesDto(String line) {
+        return SurValueDtoBuilder.aSurValuesDto()
                 .withCompany(String.valueOf(line.charAt(0)))
                 .withChdrnum(line.substring(1, 9))
                 .withSurrenderValue(Float.parseFloat(line.substring(9, 24).trim()))

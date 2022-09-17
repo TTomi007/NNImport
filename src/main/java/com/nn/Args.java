@@ -4,10 +4,10 @@ import com.beust.jcommander.Parameter;
 
 public class Args {
 
-    @Parameter(names = { "-z", "-ztpspf" }, description = "ZTPSPF file path")
+    @Parameter(names = { "-z", "-ztpspf" }, description = "Surrender value file path")
     private String ztpspf;
 
-    @Parameter(names = { "-o", "-outph" }, description = "OUTPH file path")
+    @Parameter(names = { "-o", "-outph" }, description = "Outpay header file path")
     private String outph;
 
     @Parameter(names = { "-p", "-policy" }, description = "Policy file path")

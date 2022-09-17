@@ -31,7 +31,7 @@ public class NnImportApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		IntStream.range(0, args.length).forEach( i -> log.info("args[{}]: {}", i, args[i]));
+		IntStream.range(0, args.length).forEach( i -> log.debug("args[{}]: {}", i, args[i]));
 
 		Args argsObject = new Args();
 		try {
@@ -41,7 +41,8 @@ public class NnImportApplication implements CommandLineRunner {
 					.parse(args);
 			importService.importFromFiles(argsObject);
 		} catch (ParameterException e) {
-			log.error("Invalid parameter: {}", e.getMessage());
+			log.error(e.toString());
+			System.out.printf("%s%n", e.getMessage());
 		}
 	}
 }

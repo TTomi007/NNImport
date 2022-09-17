@@ -23,17 +23,17 @@ public class ImportService {
         if (!StringUtils.isEmpty(args.getZtpspf())) {
             log.info("Ztpspf file: {}", args.getZtpspf());
             textService.readSurValues(Path.of(args.getZtpspf())).forEach(
-                    surValuesDto -> log.info("Surrender values object: {}", surValuesDto));
+                    surValuesDto -> log.debug("Surrender values object: {}", surValuesDto));
         }
         if (!StringUtils.isEmpty(args.getOutph())) {
             log.info("Outpay header file: {}", args.getOutph());
             textService.readOutpayHeader(Path.of(args.getOutph())).forEach(
-                    outpayHeaderDto -> log.info("Outpay header object: {}", outpayHeaderDto));
+                    outpayHeaderDto -> log.debug("Outpay header object: {}", outpayHeaderDto));
         }
         if (!StringUtils.isEmpty(args.getPolicy())) {
             log.info("Policy file: {}", args.getPolicy());
             textService.readPolicy(Path.of(args.getPolicy())).forEach(
-                    policyDto -> log.info("Policy object: {}", policyDto));
+                    policyDto -> log.debug("Policy object: {}", policyDto));
         }
     }
 }

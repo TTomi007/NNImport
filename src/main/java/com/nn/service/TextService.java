@@ -1,6 +1,13 @@
 package com.nn.service;
 
-import com.nn.dto.*;
+import com.nn.dto.OutpayHeaderDto;
+import com.nn.dto.OutpayHeaderDtoBuilder;
+import com.nn.dto.PolicyDto;
+import com.nn.dto.PolicyDtoBuilder;
+import com.nn.dto.SurValuesDto;
+import com.nn.dto.SurValuesDtoBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,28 +23,39 @@ import java.util.stream.Stream;
 @Service
 public class TextService {
 
+    private static final Logger log = LoggerFactory.getLogger(TextService.class);
+
     public List<SurValuesDto> readSurValues(Path filePath) {
+        List<SurValuesDto> result = new ArrayList<>();
         try (Stream<String> lines = Files.lines(filePath, StandardCharsets.ISO_8859_1)) {
-            return new ArrayList<>(lines.map(this::mapToSurValuesDto).toList());
+            result.addAll(lines.map(this::mapToSurValuesDto).toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error(e.toString());
+            System.out.printf("Invalid surrender value file path: %s%n", filePath);
         }
+        return result;
     }
 
     public List<OutpayHeaderDto> readOutpayHeader(Path filePath) {
+        List<OutpayHeaderDto> result = new ArrayList<>();
         try (Stream<String> lines = Files.lines(filePath, StandardCharsets.ISO_8859_1)) {
-            return new ArrayList<>(lines.map(line -> mapToOutpayHeaderDto(line.split(";", -1))).toList());
+            result.addAll(lines.map(line -> mapToOutpayHeaderDto(line.split(";", -1))).toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error(e.toString());
+            System.out.printf("Outpay header value file path: %s%n", filePath);
         }
+        return result;
     }
 
     public List<PolicyDto> readPolicy(Path filePath) {
+        List<PolicyDto> result = new ArrayList<>();
         try (Stream<String> lines = Files.lines(filePath, StandardCharsets.ISO_8859_1)) {
-            return new ArrayList<>(lines.map(line -> mapToPolicyDto(line.split("\\|", -1))).toList());
+            result.addAll(lines.map(line -> mapToPolicyDto(line.split("\\|", -1))).toList());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error(e.toString());
+            System.out.printf("Policy file path: %s%n", filePath);
         }
+        return result;
     }
 
     private SurValuesDto mapToSurValuesDto(String line) {

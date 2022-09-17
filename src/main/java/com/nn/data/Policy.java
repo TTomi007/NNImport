@@ -14,10 +14,10 @@ public class Policy {
     private Integer id;
 
     @Column(nullable = false, length = 8)
-    private String chdrnum;
+    private String chdrNum;
 
     @Column(nullable = false, length = 8)
-    private String cownnum;
+    private String cownNum;
 
     @Column(length = 50)
     private String ownerName;
@@ -32,7 +32,7 @@ public class Policy {
     private String aracde;
 
     @Column(length = 5)
-    private String agntnum;
+    private String agntNum;
 
     @Column(length = 50)
     private String mailAddress;
@@ -45,20 +45,20 @@ public class Policy {
         this.id = id;
     }
 
-    public String getChdrnum() {
-        return chdrnum;
+    public String getChdrNum() {
+        return chdrNum;
     }
 
-    public void setChdrnum(String chdrnum) {
-        this.chdrnum = chdrnum;
+    public void setChdrNum(String chdrNum) {
+        this.chdrNum = chdrNum;
     }
 
-    public String getCownnum() {
-        return cownnum;
+    public String getCownNum() {
+        return cownNum;
     }
 
-    public void setCownnum(String cownnum) {
-        this.cownnum = cownnum;
+    public void setCownNum(String cownNum) {
+        this.cownNum = cownNum;
     }
 
     public String getOwnerName() {
@@ -93,12 +93,12 @@ public class Policy {
         this.aracde = aracde;
     }
 
-    public String getAgntnum() {
-        return agntnum;
+    public String getAgntNum() {
+        return agntNum;
     }
 
-    public void setAgntnum(String agntnum) {
-        this.agntnum = agntnum;
+    public void setAgntNum(String agntNum) {
+        this.agntNum = agntNum;
     }
 
     public String getMailAddress() {

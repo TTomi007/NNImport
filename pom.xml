@@ -16,10 +16,12 @@
 	<properties>
 		<java.version>18</java.version>
 		<jcommander.version>1.82</jcommander.version>
-		<springboot.version>2.7.3</springboot.version>
 		<commonslang3.version>3.12.0</commonslang3.version>
+		<mapstruct.version>1.5.2.Final</mapstruct.version>
+		<springboot.version>2.7.3</springboot.version>
 		<liquibase.version>4.16.1</liquibase.version>
 		<mysqlconnector.version>8.0.30</mysqlconnector.version>
+		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,6 +33,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commonslang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,6 +69,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${parent.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

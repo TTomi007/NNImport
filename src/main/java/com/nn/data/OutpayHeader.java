@@ -18,10 +18,10 @@ public class OutpayHeader {
     private Integer outpayHeaderId;
 
     @Column(nullable = false, length = 8)
-    private String clntnum;
+    private String clntNum;
 
     @Column(nullable = false, length = 8)
-    private String chdrnum;
+    private String chdrNum;
 
     @Column(nullable = false, length = 12)
     private String letterType;
@@ -86,20 +86,20 @@ public class OutpayHeader {
         this.outpayHeaderId = outpayHeaderId;
     }
 
-    public String getClntnum() {
-        return clntnum;
+    public String getClntNum() {
+        return clntNum;
     }
 
-    public void setClntnum(String clntnum) {
-        this.clntnum = clntnum;
+    public void setClntNum(String clntNum) {
+        this.clntNum = clntNum;
     }
 
-    public String getChdrnum() {
-        return chdrnum;
+    public String getChdrNum() {
+        return chdrNum;
     }
 
-    public void setChdrnum(String chdrnum) {
-        this.chdrnum = chdrnum;
+    public void setChdrNum(String chdrNum) {
+        this.chdrNum = chdrNum;
     }
 
     public String getLetterType() {

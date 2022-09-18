@@ -4,6 +4,7 @@ import com.nn.data.SurValue;
 import com.nn.dto.SurValueDto;
 import com.nn.mapper.SurValueMapper;
 import com.nn.repository.SurValueRepository;
+import org.apache.commons.collections4.IterableUtils;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +15,19 @@ public class SurValueService {
 
     private final SurValueRepository surValueRepository;
 
-    private SurValueMapper mapper = Mappers.getMapper(SurValueMapper.class);
+    private final SurValueMapper mapper = Mappers.getMapper(SurValueMapper.class);
 
     public SurValueService(SurValueRepository surValueRepository) {
         this.surValueRepository = surValueRepository;
     }
 
-    public void saveAll(List<SurValueDto> surValueDtos) {
-        List<SurValue> surValues = surValueDtos.stream()
-                .map(surValueDto -> mapper.SurValueDtoToSurValue(surValueDto))
-                .toList();
-        surValueRepository.saveAll(surValues);
+    public List<SurValue> saveAll(List<SurValueDto> surValueDtos) {
+        if (surValueDtos != null) {
+            List<SurValue> surValues = surValueDtos.stream()
+                    .map(mapper::SurValueDtoToSurValue)
+                    .toList();
+            return IterableUtils.toList(surValueRepository.saveAll(surValues));
+        }
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import com.nn.data.OutpayHeader;
 import com.nn.dto.OutpayHeaderDto;
 import com.nn.mapper.OutpayHeaderMapper;
 import com.nn.repository.OutpayHeaderRepository;
+import org.apache.commons.collections4.IterableUtils;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +15,19 @@ public class OutpayHeaderService {
 
     private final OutpayHeaderRepository outpayHeaderRepository;
 
-    private OutpayHeaderMapper mapper = Mappers.getMapper(OutpayHeaderMapper.class);
+    private final OutpayHeaderMapper mapper = Mappers.getMapper(OutpayHeaderMapper.class);
 
     public OutpayHeaderService(OutpayHeaderRepository outpayHeaderRepository) {
         this.outpayHeaderRepository = outpayHeaderRepository;
     }
 
-    public void saveAll(List<OutpayHeaderDto> outpayHeaderDtos) {
-        List<OutpayHeader> outpayHeaders = outpayHeaderDtos.stream()
-                .map(surValueDto -> mapper.OutpayHeaderDtoToOutpayHeader(surValueDto))
-                .toList();
-        outpayHeaderRepository.saveAll(outpayHeaders);
+    public List<OutpayHeader> saveAll(List<OutpayHeaderDto> outpayHeaderDtos) {
+        if (outpayHeaderDtos != null) {
+            List<OutpayHeader> outpayHeaders = outpayHeaderDtos.stream()
+                    .map(mapper::OutpayHeaderDtoToOutpayHeader)
+                    .toList();
+            return IterableUtils.toList(outpayHeaderRepository.saveAll(outpayHeaders));
+        }
+        return null;
     }
 }

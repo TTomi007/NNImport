@@ -43,13 +43,13 @@ public class ImportService {
             log.info("Outpay header file: {}", args.getOutph());
             List<OutpayHeaderDto> outpayHeaderDtos = textService.readOutpayHeader(Path.of(args.getOutph()));
             outpayHeaderDtos.forEach(outpayHeaderDto -> log.debug("Outpay header object: {}", outpayHeaderDto));
-//            outpayHeaderService.saveAll(outpayHeaderDtos);
+            outpayHeaderService.saveAll(outpayHeaderDtos);
         }
         if (!StringUtils.isEmpty(args.getPolicy())) {
             log.info("Policy file: {}", args.getPolicy());
             List<PolicyDto> policyDtos = textService.readPolicy(Path.of(args.getPolicy()));
             policyDtos.forEach(policyDto -> log.debug("Policy object: {}", policyDto));
-//            policyService.saveAll(policyDtos);
+            policyService.saveAll(policyDtos);
         }
     }
 }

@@ -13,34 +13,34 @@ import java.time.LocalDate;
 public class OutpayHeader {
 
     @Id()
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "Outpay_Header_ID")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer outpayHeaderId;
 
-    @Column(nullable = false, length = 8)
+    @Column(name = "Clntnum", nullable = false, length = 8)
     private String clntNum;
 
-    @Column(nullable = false, length = 8)
+    @Column(name = "Chdrnum", nullable = false, length = 8)
     private String chdrNum;
 
-    @Column(nullable = false, length = 12)
+    @Column(name = "Lettertype", nullable = false, length = 12)
     private String letterType;
 
-    @Column(nullable = false)
+    @Column(name = "Printdate", nullable = false)
     private LocalDate printDate;
 
-    @Column(length = 6)
+    @Column(name = "Dataid", length = 6)
     private String dataId;
 
-    @Column(length = 80)
+    @Column(name = "Clntname", length = 80)
     private String clntName;
 
-    @Column(length = 80)
+    @Column(name = "Clntaddress", length = 80)
     private String clntAddress;
 
+    @Column(name = "Regdate")
     private LocalDate regDate;
 
-    @Column(length = 6, precision = 2)
+    @Column(name = "Benpercent", length = 6, precision = 2)
     private Double benPercent;
 
     @Column(length = 2)
@@ -49,10 +49,10 @@ public class OutpayHeader {
     @Column(length = 2)
     private String role2;
 
-    @Column(length = 8)
+    @Column(name = "Cownnum", length = 8)
     private String cownNum;
 
-    @Column(length = 80)
+    @Column(name = "Cownname", length = 80)
     private String cownName;
 
     @Column(length = 80)
@@ -73,9 +73,10 @@ public class OutpayHeader {
     @Column(length = 80)
     private String notice06;
 
-    @Column(name = "Claim_ID", length = 9)
+    @Column(length = 9)
     private String claimId;
 
+    @Column(name = "Tp2processdate")
     private LocalDate tp2ProcessDate;
 
     public Integer getOutpayHeaderId() {

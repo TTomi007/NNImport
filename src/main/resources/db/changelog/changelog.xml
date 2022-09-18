@@ -10,7 +10,7 @@
 		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <changeSet id="initdb" author="ttomi007">
         <createTable tableName="SurValues">
-            <column name="ID" type="int">
+            <column name="ID" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Chdrnum" type="char(8)">
@@ -26,7 +26,7 @@
             <column name="ValidDate" type="char(10)"/>
         </createTable>
         <createTable tableName="OutPay_Header">
-            <column name="Outpay_Header_ID" type="int">
+            <column name="Outpay_Header_ID" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Clntnum" type="char(8)">
@@ -38,13 +38,13 @@
             <column name="LetterType" type="char(12)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PrintDate" type="datetime">
+            <column name="PrintDate" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="DataID" type="char(6)"/>
             <column name="ClntName" type="nvarchar(80)"/>
             <column name="ClntAddress" type="nvarchar(80)"/>
-            <column name="RegDate" type="datetime"/>
+            <column name="RegDate" type="date"/>
             <column name="BenPercent" type="decimal(6, 2)"/>
             <column name="Role1" type="char(2)"/>
             <column name="Role2" type="char(2)"/>
@@ -60,7 +60,7 @@
             <column name="TP2ProcessDate" type="datetime"/>
         </createTable>
         <createTable tableName="Policy">
-            <column name="ID" type="int">
+            <column name="ID" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="Chdrnum" type="char(8)">
@@ -74,8 +74,23 @@
             <column name="LifcName" type="nvarchar(50)"/>
             <column name="Aracde" type="char(3)"/>
             <column name="Agntnum" type="char(5)"/>
-            <column name="MailAddress" type="nvarchar(50)"/>
+            <column name="MailAddress" type="nvarchar(60)"/>
         </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="ID"
+                startWith="1000"
+                tableName="SurValues"/>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="Outpay_Header_ID"
+                startWith="1000"
+                tableName="OutPay_Header"/>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="ID"
+                startWith="1000"
+                tableName="Policy"/>
     </changeSet>
 </databaseChangeLog>
 

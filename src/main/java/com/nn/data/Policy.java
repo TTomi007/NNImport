@@ -10,31 +10,31 @@ import javax.persistence.Id;
 public class Policy {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 8)
+    @Column(name = "Chdrnum", nullable = false, length = 8)
     private String chdrNum;
 
-    @Column(nullable = false, length = 8)
+    @Column(name = "Cownnum", nullable = false, length = 8)
     private String cownNum;
 
-    @Column(length = 50)
+    @Column(name = "Ownername", length = 50)
     private String ownerName;
 
-    @Column(length = 8)
+    @Column(name = "Lifcnum", length = 8)
     private String lifcNum;
 
-    @Column(length = 50)
+    @Column(name = "Lifcname", length = 50)
     private String lifcName;
 
     @Column(length = 3)
     private String aracde;
 
-    @Column(length = 5)
+    @Column(name = "Agntnum", length = 5)
     private String agntNum;
 
-    @Column(length = 50)
+    @Column(name = "Mailaddress", length = 60)
     private String mailAddress;
 
     public Integer getId() {

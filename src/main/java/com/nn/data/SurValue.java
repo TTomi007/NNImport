@@ -12,14 +12,14 @@ import javax.persistence.Table;
 public class SurValue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 8)
-    private String chdrnum;
+    @Column(name = "Chdrnum", nullable = false, length = 8)
+    private String chdrNum;
 
-    @Column(nullable = false, length = 15, precision = 2)
-    private Double survalue;
+    @Column(name = "Survalue", nullable = false, length = 15, precision = 2)
+    private Double surValue;
 
     @Column(nullable = false, length = 1)
     private String company;
@@ -27,8 +27,8 @@ public class SurValue {
     @Column(length = 3)
     private String currency;
 
-    @Column(length = 10)
-    private String validdate;
+    @Column(name = "Validdate", length = 10)
+    private String validDate;
 
     public Integer getId() {
         return id;
@@ -38,20 +38,20 @@ public class SurValue {
         this.id = id;
     }
 
-    public String getChdrnum() {
-        return chdrnum;
+    public String getChdrNum() {
+        return chdrNum;
     }
 
-    public void setChdrnum(String chdrnum) {
-        this.chdrnum = chdrnum;
+    public void setChdrNum(String chdrNum) {
+        this.chdrNum = chdrNum;
     }
 
-    public Double getSurvalue() {
-        return survalue;
+    public Double getSurValue() {
+        return surValue;
     }
 
-    public void setSurvalue(Double survalue) {
-        this.survalue = survalue;
+    public void setSurValue(Double surValue) {
+        this.surValue = surValue;
     }
 
     public String getCompany() {
@@ -70,11 +70,11 @@ public class SurValue {
         this.currency = currency;
     }
 
-    public String getValiddate() {
-        return validdate;
+    public String getValidDate() {
+        return validDate;
     }
 
-    public void setValiddate(String validdate) {
-        this.validdate = validdate;
+    public void setValidDate(String validDate) {
+        this.validDate = validDate;
     }
 }

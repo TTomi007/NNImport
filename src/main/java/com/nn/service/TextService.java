@@ -32,6 +32,9 @@ public class TextService {
         } catch (IOException e) {
             log.error(e.toString());
             System.out.printf("Invalid surrender value file path: %s%n", filePath);
+        } catch (RuntimeException e) {
+            log.error(e.toString());
+            System.out.printf("Surrender value file: %s, error message: %s%n", filePath, e.getMessage());
         }
         return result;
     }
@@ -42,7 +45,10 @@ public class TextService {
             result.addAll(lines.map(line -> mapToOutpayHeaderDto(line.split(";", -1))).toList());
         } catch (IOException e) {
             log.error(e.toString());
-            System.out.printf("Outpay header value file path: %s%n", filePath);
+            System.out.printf("Invalid outpay header file path: %s%n", filePath);
+        } catch (RuntimeException e) {
+            log.error(e.toString());
+            System.out.printf("Outpay header file: %s, error message: %s%n", filePath, e.getMessage());
         }
         return result;
     }
@@ -53,7 +59,10 @@ public class TextService {
             result.addAll(lines.map(line -> mapToPolicyDto(line.split("\\|", -1))).toList());
         } catch (IOException e) {
             log.error(e.toString());
-            System.out.printf("Policy file path: %s%n", filePath);
+            System.out.printf("Invalid policy file path: %s%n", filePath);
+        } catch (RuntimeException e) {
+            log.error(e.toString());
+            System.out.printf("Invalid policy file: %s, error message: %s%n", filePath, e.getMessage());
         }
         return result;
     }

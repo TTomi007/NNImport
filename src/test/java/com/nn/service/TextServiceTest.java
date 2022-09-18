@@ -41,6 +41,12 @@ class TextServiceTest {
     }
 
     @Test
+    void readSurValuesMonthErrorTest() {
+        List<SurValueDto> readSurValueDtos = subject.readSurValues(getFilePath("ZTPSPF_MONTH_ERROR.TXT"));
+        assertEquals(0, readSurValueDtos.size());
+    }
+
+    @Test
     void readSurValuesValidTest() {
         List<SurValueDto> readSurValueDtos = subject.readSurValues(getFilePath("ZTPSPF01.TXT"));
         assertEquals(1, readSurValueDtos.size());
@@ -63,6 +69,13 @@ class TextServiceTest {
     }
 
     @Test
+    void readOutpayHeaderDayErrorTest() {
+        List<OutpayHeaderDto> readOutpayHeaderDtos = subject.readOutpayHeader(
+                getFilePath("OUTPH_CUP_01_DAY_ERROR.TXT"));
+        assertEquals(0, readOutpayHeaderDtos.size());
+    }
+
+    @Test
     void readOutpayHeaderValidTest() {
         List<OutpayHeaderDto> readOutpayHeaderDtos = subject.readOutpayHeader(
                 getFilePath("OUTPH_CUP_01.TXT"));
@@ -80,6 +93,12 @@ class TextServiceTest {
     @Test
     void readPolicyEmptyTest() {
         List<PolicyDto> readPolicyDtos = subject.readPolicy(getFilePath("CUSTCOMP_EMPTY.txt"));
+        assertEquals(0, readPolicyDtos.size());
+    }
+
+    @Test
+    void readPolicyColumnErrorTest() {
+        List<PolicyDto> readPolicyDtos = subject.readPolicy(getFilePath("CUSTCOMP01_COLUMN_ERROR.txt"));
         assertEquals(0, readPolicyDtos.size());
     }
 

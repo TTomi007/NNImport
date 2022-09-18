@@ -2,7 +2,6 @@ package com.nn.service;
 
 import com.nn.data.Policy;
 import com.nn.dto.PolicyDto;
-import com.nn.dto.PolicyDtoBuilder;
 import com.nn.repository.PolicyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,38 +38,21 @@ class PolicyServiceTest {
 
     @Test
     void saveAllEmptyListTest() {
-        List<PolicyDto> policyDtos = new ArrayList<>();
-        List<Policy> mappedPolicies = new ArrayList<>();
+        List<PolicyDto> policyDtos = Collections.emptyList();
+        List<Policy> mappedPolicies = Collections.emptyList();
         when(policyRepository.saveAll(anyList())).thenReturn(mappedPolicies);
         List<Policy> savedPolicies = subject.saveAll(policyDtos);
-        assertEquals(policyDtos.size(), savedPolicies.size());
+        assertEquals(0, savedPolicies.size());
     }
 
     @Test
     void saveAllTest() {
-        PolicyDto policyDto = PolicyDtoBuilder.aPolicyDto()
-                .withChdrNum("22222222")
-                .withCownNum("11111111")
-                .withOwnerName("Teszt Elek")
-                .withLifcNum("33333333")
-                .withLifcName("Teszt Elek")
-                .withAracde("14R")
-                .withAgntNum("11111")
-                .withMailAddress("4444 Baja Teszt utca 1.")
-                .build();
+        PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
         List<PolicyDto> policyDtos = List.of(policyDto);
 
-        Policy mappedPolicy = new Policy();
-        mappedPolicy.setChdrNum("22222222");
-        mappedPolicy.setCownNum("11111111");
-        mappedPolicy.setOwnerName("Teszt Elek");
-        mappedPolicy.setLifcNum("33333333");
-        mappedPolicy.setLifcName("Teszt Elek");
-        mappedPolicy.setAracde("14R");
-        mappedPolicy.setAgntNum("11111");
-        mappedPolicy.setMailAddress("4444 Baja Teszt utca 1.");
-
+        Policy mappedPolicy = TestObjectInitializer.createPolicy();
         List<Policy> mappedPolicies = List.of(mappedPolicy);
+
         when(policyRepository.saveAll(anyList())).thenReturn(mappedPolicies);
         List<Policy> savedPolicies = subject.saveAll(policyDtos);
         assertEquals(policyDtos.size(), savedPolicies.size());

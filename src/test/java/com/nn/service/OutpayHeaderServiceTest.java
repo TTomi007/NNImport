@@ -2,7 +2,6 @@ package com.nn.service;
 
 import com.nn.data.OutpayHeader;
 import com.nn.dto.OutpayHeaderDto;
-import com.nn.dto.OutpayHeaderDtoBuilder;
 import com.nn.repository.OutpayHeaderRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,9 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,50 +37,21 @@ class OutpayHeaderServiceTest {
 
     @Test
     void saveAllEmptyListTest() {
-        List<OutpayHeaderDto> outpayHeaderDtos = new ArrayList<>();
-        List<OutpayHeader> mappedOutpayHeaders = new ArrayList<>();
+        List<OutpayHeaderDto> outpayHeaderDtos = Collections.emptyList();
+        List<OutpayHeader> mappedOutpayHeaders = Collections.emptyList();
         when(outpayHeaderRepository.saveAll(anyList())).thenReturn(mappedOutpayHeaders);
         List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
-        assertEquals(outpayHeaderDtos.size(), savedOutpayHeaders.size());
+        assertEquals(0, savedOutpayHeaders.size());
     }
 
     @Test
     void saveAllTest() {
-        OutpayHeaderDto outpayHeaderDto = OutpayHeaderDtoBuilder.anOutpayHeaderDto()
-                .withClntNum("55555555")
-                .withChdrNum("66666666")
-                .withLetterType("LET")
-                .withPrintDate(LocalDate.parse("20201111", DateTimeFormatter.BASIC_ISO_DATE))
-                .withDataId("TEST")
-                .withClntName("Teszt Elek")
-                .withClntAddress("6666 Pécs Van utca 7.")
-                .withRegDate(LocalDate.parse("20201106", DateTimeFormatter.BASIC_ISO_DATE))
-                .withBenPercent(88.75)
-                .withRole1("Role1")
-                .withRole2("Role2")
-                .withCownNum("11111111")
-                .withCownName("Teszt Nóra")
-                .withClaimId("123456789")
-                .build();
+        OutpayHeaderDto outpayHeaderDto = TestObjectInitializer.createOutpayHeaderDto();
         List<OutpayHeaderDto> outpayHeaderDtos = List.of(outpayHeaderDto);
 
-        OutpayHeader mappedOutpayHeader = new OutpayHeader();
-        mappedOutpayHeader.setClntNum("55555555");
-        mappedOutpayHeader.setChdrNum("66666666");
-        mappedOutpayHeader.setLetterType("LET");
-        mappedOutpayHeader.setPrintDate(LocalDate.parse("20201111", DateTimeFormatter.BASIC_ISO_DATE));
-        mappedOutpayHeader.setDataId("TEST");
-        mappedOutpayHeader.setClntName("Teszt Elek");
-        mappedOutpayHeader.setClntAddress("6666 Pécs Van utca 7.");
-        mappedOutpayHeader.setRegDate(LocalDate.parse("20201106", DateTimeFormatter.BASIC_ISO_DATE));
-        mappedOutpayHeader.setBenPercent(88.75);
-        mappedOutpayHeader.setRole1("Role1");
-        mappedOutpayHeader.setRole2("Role2");
-        mappedOutpayHeader.setCownNum("11111111");
-        mappedOutpayHeader.setCownName("Teszt Nóra");
-        mappedOutpayHeader.setClaimId("123456789");
-
+        OutpayHeader mappedOutpayHeader = TestObjectInitializer.createOutpayHeader();
         List<OutpayHeader> mappedOutpayHeaders = List.of(mappedOutpayHeader);
+
         when(outpayHeaderRepository.saveAll(anyList())).thenReturn(mappedOutpayHeaders);
         List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
         assertEquals(outpayHeaderDtos.size(), savedOutpayHeaders.size());

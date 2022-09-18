@@ -2,7 +2,6 @@ package com.nn.service;
 
 import com.nn.data.SurValue;
 import com.nn.dto.SurValueDto;
-import com.nn.dto.SurValueDtoBuilder;
 import com.nn.repository.SurValueRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,31 +39,21 @@ class SurValueServiceTest {
 
     @Test
     void saveAllEmptyListTest() {
-        List<SurValueDto> surValueDtos = new ArrayList<>();
-        List<SurValue> mappedSurValues = new ArrayList<>();
+        List<SurValueDto> surValueDtos = Collections.emptyList();
+        List<SurValue> mappedSurValues = Collections.emptyList();
         when(surValueRepository.saveAll(anyList())).thenReturn(mappedSurValues);
         List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
-        assertEquals(surValueDtos.size(), savedSurValues.size());
+        assertEquals(0, savedSurValues.size());
     }
 
     @Test
     void saveAllTest() {
-        SurValueDto surValueDto = SurValueDtoBuilder.aSurValueDto()
-                .withChdrnum("42781365")
-                .withSurrenderValue(312.34)
-                .withCompany("2")
-                .withJobTimestamp(LocalDate.parse("2020-10-10"))
-                .build();
+        SurValueDto surValueDto = TestObjectInitializer.createSurValueDto();
         List<SurValueDto> surValueDtos = List.of(surValueDto);
 
-        SurValue mappedSurValue = new SurValue();
-        mappedSurValue.setChdrNum("42781365");
-        mappedSurValue.setSurValue(312.34);
-        mappedSurValue.setCompany("2");
-        mappedSurValue.setCurrency("HUF");
-        mappedSurValue.setValidDate("2020-10-10");
-
+        SurValue mappedSurValue = TestObjectInitializer.createSurValue();
         List<SurValue> mappedSurValues = List.of(mappedSurValue);
+
         when(surValueRepository.saveAll(anyList())).thenReturn(mappedSurValues);
         List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
         assertEquals(surValueDtos.size(), savedSurValues.size());

@@ -41,7 +41,7 @@ public class OutpayHeader {
     private LocalDate regDate;
 
     @Column(length = 6, precision = 2)
-    private Float benPercent;
+    private Double benPercent;
 
     @Column(length = 2)
     private String role1;
@@ -150,11 +150,11 @@ public class OutpayHeader {
         this.regDate = regDate;
     }
 
-    public Float getBenPercent() {
+    public Double getBenPercent() {
         return benPercent;
     }
 
-    public void setBenPercent(Float benPercent) {
+    public void setBenPercent(Double benPercent) {
         this.benPercent = benPercent;
     }
 

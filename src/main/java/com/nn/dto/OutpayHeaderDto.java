@@ -12,7 +12,7 @@ public record OutpayHeaderDto(
         LocalDate regDate,
         String clntName,
         String clntAddress,
-        float benPercent,
+        Double benPercent,
         String role1,
         String role2,
         String cownNum,

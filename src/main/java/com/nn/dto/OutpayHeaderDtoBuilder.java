@@ -12,7 +12,7 @@ public final class OutpayHeaderDtoBuilder {
     private LocalDate regDate;
     private String clntName;
     private String clntAddress;
-    private float benPercent;
+    private Double benPercent;
     private String role1;
     private String role2;
     private String cownNum;
@@ -70,7 +70,7 @@ public final class OutpayHeaderDtoBuilder {
         return this;
     }
 
-    public OutpayHeaderDtoBuilder withBenPercent(float benPercent) {
+    public OutpayHeaderDtoBuilder withBenPercent(Double benPercent) {
         this.benPercent = benPercent;
         return this;
     }

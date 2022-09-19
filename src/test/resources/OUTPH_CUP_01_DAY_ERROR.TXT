@@ -1,1 +1,1 @@
-63559755;71034483;CUP;20200242;OUTPAY;Kiss Noel;2353 Békéscsaba, Sajtoló u. 3/a;;100.00;OW;  ;63559755;Kiss Noel;        
+63559755;71034483;CUP;20200242;OUTPAY;Kiss Noel;2353 Békéscsaba, Sajtoló u. 3/a;100.00;OW;  ;63559755;Kiss Noel;        

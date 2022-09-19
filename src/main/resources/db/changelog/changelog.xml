@@ -44,7 +44,6 @@
             <column name="DataID" type="char(6)"/>
             <column name="ClntName" type="nvarchar(80)"/>
             <column name="ClntAddress" type="nvarchar(80)"/>
-            <column name="RegDate" type="date"/>
             <column name="BenPercent" type="decimal(6, 2)"/>
             <column name="Role1" type="char(2)"/>
             <column name="Role2" type="char(2)"/>
@@ -56,7 +55,6 @@
             <column name="Notice04" type="nvarchar(80)"/>
             <column name="Notice05" type="nvarchar(80)"/>
             <column name="Notice06" type="nvarchar(80)"/>
-            <column name="Claim_ID" type="char(9)"/>
             <column name="TP2ProcessDate" type="datetime"/>
         </createTable>
         <createTable tableName="Policy">

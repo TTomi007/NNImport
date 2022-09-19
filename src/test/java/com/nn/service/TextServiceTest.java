@@ -135,13 +135,10 @@ class TextServiceTest {
                 .withChdrNum("71034483")
                 .withLetterType("CUP")
                 .withPrintDate(LocalDate.parse("20200210", DateTimeFormatter.BASIC_ISO_DATE))
-                //TODO claimId hiányzik a fájlból
                 .withDataId("OUTPAY")
-                //TODO regDate hiányzik a fájlból
                 .withClntName("Kiss Noel")
                 .withClntAddress("2353 Békéscsaba, Sajtoló u. 3/a")
-                //TODO null jön, talán ben Percent?
-                //TODO 100.00 jön ez mi???
+                .withBenPercent(100.00)
                 .withRole1("OW")
                 .withRole2("  ")
                 .withCownNum("63559755")

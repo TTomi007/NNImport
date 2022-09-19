@@ -37,9 +37,6 @@ public class OutpayHeader {
     @Column(name = "Clntaddress", length = 80)
     private String clntAddress;
 
-    @Column(name = "Regdate")
-    private LocalDate regDate;
-
     @Column(name = "Benpercent", length = 6, precision = 2)
     private Double benPercent;
 
@@ -72,9 +69,6 @@ public class OutpayHeader {
 
     @Column(length = 80)
     private String notice06;
-
-    @Column(length = 9)
-    private String claimId;
 
     @Column(name = "Tp2processdate")
     private LocalDate tp2ProcessDate;
@@ -141,14 +135,6 @@ public class OutpayHeader {
 
     public void setClntAddress(String clntAddress) {
         this.clntAddress = clntAddress;
-    }
-
-    public LocalDate getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(LocalDate regDate) {
-        this.regDate = regDate;
     }
 
     public Double getBenPercent() {
@@ -237,14 +223,6 @@ public class OutpayHeader {
 
     public void setNotice06(String notice06) {
         this.notice06 = notice06;
-    }
-
-    public String getClaimId() {
-        return claimId;
-    }
-
-    public void setClaimId(String claimId) {
-        this.claimId = claimId;
     }
 
     public LocalDate getTp2ProcessDate() {

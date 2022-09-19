@@ -84,17 +84,14 @@ public class TextService {
                 .withChdrNum(values[1])
                 .withLetterType(values[2])
                 .withPrintDate(LocalDate.parse(values[3], DateTimeFormatter.BASIC_ISO_DATE))
-                //TODO claimId hiányzik a fájlból
                 .withDataId(values[4])
-                //TODO regDate hiányzik a fájlból
                 .withClntName(values[5])
                 .withClntAddress(values[6])
-                //TODO null jön, talán ben Percent?
-                //TODO 100.00 jön ez mi???
-                .withRole1(values[9])
-                .withRole2(values[10])
-                .withCownNum(values[11])
-                .withCownName(values[12])
+                .withBenPercent(Double.parseDouble(values[7]))
+                .withRole1(values[8])
+                .withRole2(values[9])
+                .withCownNum(values[10])
+                .withCownName(values[11])
                 .build();
     }
 

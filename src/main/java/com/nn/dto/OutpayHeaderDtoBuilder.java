@@ -7,9 +7,7 @@ public final class OutpayHeaderDtoBuilder {
     private String chdrNum;
     private String letterType;
     private LocalDate printDate;
-    private String claimId;
     private String dataId;
-    private LocalDate regDate;
     private String clntName;
     private String clntAddress;
     private Double benPercent;
@@ -45,18 +43,8 @@ public final class OutpayHeaderDtoBuilder {
         return this;
     }
 
-    public OutpayHeaderDtoBuilder withClaimId(String claimId) {
-        this.claimId = claimId;
-        return this;
-    }
-
     public OutpayHeaderDtoBuilder withDataId(String dataId) {
         this.dataId = dataId;
-        return this;
-    }
-
-    public OutpayHeaderDtoBuilder withRegDate(LocalDate regDate) {
-        this.regDate = regDate;
         return this;
     }
 
@@ -96,6 +84,6 @@ public final class OutpayHeaderDtoBuilder {
     }
 
     public OutpayHeaderDto build() {
-        return new OutpayHeaderDto(clntNum, chdrNum, letterType, printDate, claimId, dataId, regDate, clntName, clntAddress, benPercent, role1, role2, cownNum, cownName);
+        return new OutpayHeaderDto(clntNum, chdrNum, letterType, printDate, dataId, clntName, clntAddress, benPercent, role1, role2, cownNum, cownName);
     }
 }

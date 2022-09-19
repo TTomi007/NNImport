@@ -52,13 +52,11 @@ public class TestObjectInitializer {
         mappedOutpayHeader.setDataId("TEST");
         mappedOutpayHeader.setClntName("Teszt Elek");
         mappedOutpayHeader.setClntAddress("6666 Pécs Van utca 7.");
-        mappedOutpayHeader.setRegDate(LocalDate.parse("20201106", DateTimeFormatter.BASIC_ISO_DATE));
         mappedOutpayHeader.setBenPercent(88.75);
         mappedOutpayHeader.setRole1("Role1");
         mappedOutpayHeader.setRole2("Role2");
         mappedOutpayHeader.setCownNum("11111111");
         mappedOutpayHeader.setCownName("Teszt Nóra");
-        mappedOutpayHeader.setClaimId("123456789");
         return mappedOutpayHeader;
     }
 
@@ -71,13 +69,11 @@ public class TestObjectInitializer {
                 .withDataId("TEST")
                 .withClntName("Teszt Elek")
                 .withClntAddress("6666 Pécs Van utca 7.")
-                .withRegDate(LocalDate.parse("20201106", DateTimeFormatter.BASIC_ISO_DATE))
                 .withBenPercent(88.75)
                 .withRole1("Role1")
                 .withRole2("Role2")
                 .withCownNum("11111111")
                 .withCownName("Teszt Nóra")
-                .withClaimId("123456789")
                 .build();
     }
 

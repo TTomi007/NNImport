@@ -63,13 +63,11 @@ class OutpayHeaderServiceTest {
         assertEquals(outpayHeaderDto.dataId(), savedOutpayHeader.getDataId());
         assertEquals(outpayHeaderDto.clntName(), savedOutpayHeader.getClntName());
         assertEquals(outpayHeaderDto.clntAddress(), savedOutpayHeader.getClntAddress());
-        assertEquals(outpayHeaderDto.regDate(), savedOutpayHeader.getRegDate());
         assertEquals(outpayHeaderDto.benPercent(), savedOutpayHeader.getBenPercent());
         assertEquals(outpayHeaderDto.role1(), savedOutpayHeader.getRole1());
         assertEquals(outpayHeaderDto.role2(), savedOutpayHeader.getRole2());
         assertEquals(outpayHeaderDto.cownNum(), savedOutpayHeader.getCownNum());
         assertEquals(outpayHeaderDto.cownName(), savedOutpayHeader.getCownName());
-        assertEquals(outpayHeaderDto.claimId(), savedOutpayHeader.getClaimId());
         assertNull(savedOutpayHeader.getNotice01());
         assertNull(savedOutpayHeader.getNotice02());
         assertNull(savedOutpayHeader.getNotice03());

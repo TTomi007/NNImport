@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 @ExtendWith(MockitoExtension.class)
 class SurValueServiceTest {
@@ -47,6 +47,18 @@ class SurValueServiceTest {
     }
 
     @Test
+    void saveAllNullElementInListTest() {
+        List<SurValueDto> surValueDtos = new ArrayList<>();
+        surValueDtos.add(null);
+        List<SurValue> mappedSurValues = new ArrayList<>();
+        mappedSurValues.add(null);
+        when(surValueRepository.saveAll(mappedSurValues)).thenReturn(mappedSurValues);
+        List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
+        assertEquals(1, savedSurValues.size());
+        assertNull(savedSurValues.get(0));
+    }
+
+    @Test
     void saveAllTest() {
         SurValueDto surValueDto = TestObjectInitializer.createSurValueDto();
         List<SurValueDto> surValueDtos = List.of(surValueDto);
@@ -58,6 +70,7 @@ class SurValueServiceTest {
         List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
         assertEquals(surValueDtos.size(), savedSurValues.size());
         SurValue savedSurValue = savedSurValues.get(0);
+        assertEquals(1, savedSurValue.getId());
         assertEquals(surValueDto.chdrNum(), savedSurValue.getChdrNum());
         assertEquals(surValueDto.surrenderValue(), savedSurValue.getSurValue());
         assertEquals(surValueDto.company(), savedSurValue.getCompany());

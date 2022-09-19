@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 
 @ExtendWith(MockitoExtension.class)
 class PolicyServiceTest {
@@ -46,6 +46,18 @@ class PolicyServiceTest {
     }
 
     @Test
+    void saveAllNullElementInListTest() {
+        List<PolicyDto> policyDtos =  new ArrayList<>();
+        policyDtos.add(null);
+        List<Policy> mappedPolicies = new ArrayList<>();
+        mappedPolicies.add(null);
+        when(policyRepository.saveAll(mappedPolicies)).thenReturn(mappedPolicies);
+        List<Policy> savedPolicies = subject.saveAll(policyDtos);
+        assertEquals(1, savedPolicies.size());
+        assertNull(savedPolicies.get(0));
+    }
+
+    @Test
     void saveAllTest() {
         PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
         List<PolicyDto> policyDtos = List.of(policyDto);
@@ -57,6 +69,7 @@ class PolicyServiceTest {
         List<Policy> savedPolicies = subject.saveAll(policyDtos);
         assertEquals(policyDtos.size(), savedPolicies.size());
         Policy savedPolicy = savedPolicies.get(0);
+        assertEquals(101, savedPolicy.getId());
         assertEquals(policyDto.chdrNum(), savedPolicy.getChdrNum());
         assertEquals(policyDto.cownNum(), savedPolicy.getCownNum());
         assertEquals(policyDto.ownerName(), savedPolicy.getOwnerName());

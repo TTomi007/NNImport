@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 @Entity
 public class Policy {
 
-    @NotNull(message = "Policy ID is not null")
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;

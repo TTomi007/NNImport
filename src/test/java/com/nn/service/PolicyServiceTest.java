@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,7 +62,7 @@ class PolicyServiceTest {
     void saveAllInvalidDataTest() {
         PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
         List<PolicyDto> policyDtos = List.of(policyDto);
-        when(policyRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        when(policyRepository.saveAll(anyList())).thenThrow(new ConstraintViolationException("invalid data", null));
         List<Policy> savedPolicies = subject.saveAll(policyDtos);
         assertNull(savedPolicies);
     }

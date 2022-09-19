@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ class OutpayHeaderServiceTest {
     void saveAllInvalidDataTest() {
         OutpayHeaderDto outpayHeaderDto = TestObjectInitializer.createOutpayHeaderDto();
         List<OutpayHeaderDto> outpayHeaderDtos = List.of(outpayHeaderDto);
-        when(outpayHeaderRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        when(outpayHeaderRepository.saveAll(anyList())).thenThrow(new ConstraintViolationException("invalid data", null));
         List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
         assertNull(savedOutpayHeaders);
     }

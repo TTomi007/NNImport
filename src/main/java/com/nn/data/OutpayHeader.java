@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Table(name = "outpay_header")
 public class OutpayHeader {
 
-    @NotNull(message = "Outpay_Header_ID is not null")
     @Id()
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer outpayHeaderId;

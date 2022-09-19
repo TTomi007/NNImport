@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class OutpayHeaderService {
                     .toList();
             try {
                 return IterableUtils.toList(outpayHeaderRepository.saveAll(outpayHeaders));
-            } catch (RuntimeException e) {
+            } catch (ConstraintViolationException e) {
                 log.error(e.toString());
                 System.out.printf("Invalid data in outpay header file, error message: %s%n", e.getMessage());
             }

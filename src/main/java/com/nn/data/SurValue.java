@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 @Table(name = "survalues")
 public class SurValue {
 
-    @NotNull(message = "SurValue ID is not null")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

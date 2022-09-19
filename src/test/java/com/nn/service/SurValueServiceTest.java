@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +63,7 @@ class SurValueServiceTest {
     void saveAllInvalidDataTest() {
         SurValueDto surValueDto = TestObjectInitializer.createSurValueDto();
         List<SurValueDto> surValueDtos = List.of(surValueDto);
-        when(surValueRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        when(surValueRepository.saveAll(anyList())).thenThrow(new ConstraintViolationException("invalid data", null));
         List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
         assertNull(savedSurValues);
     }

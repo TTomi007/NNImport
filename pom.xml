@@ -22,7 +22,6 @@
 		<liquibase.version>4.16.1</liquibase.version>
 		<mysqlconnector.version>8.0.30</mysqlconnector.version>
 		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-		<hibernate.validator.version>8.0.0.Final</hibernate.validator.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,9 +40,9 @@
 			<version>${mapstruct.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate.validator.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>${springboot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

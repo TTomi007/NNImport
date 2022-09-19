@@ -6,67 +6,90 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "outpay_header")
 public class OutpayHeader {
 
+    @NotNull(message = "Outpay_Header_ID is not null")
     @Id()
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer outpayHeaderId;
 
+    @NotNull(message = "Clntnum is not null")
+    @Size(max = 8, message = "Clntnum max length is 8")
     @Column(name = "Clntnum", nullable = false, length = 8)
     private String clntNum;
 
+    @NotNull(message = "Chdrnum is not null")
+    @Size(max = 8, message = "Chdrnum max length is 8")
     @Column(name = "Chdrnum", nullable = false, length = 8)
     private String chdrNum;
 
+    @NotNull(message = "LetterType is not null")
+    @Size(max = 12, message = "LetterType max length is 12")
     @Column(name = "Lettertype", nullable = false, length = 12)
     private String letterType;
 
+    @NotNull(message = "PrintDate is not null")
     @Column(name = "Printdate", nullable = false)
     private LocalDate printDate;
 
+    @Size(max = 6, message = "DataID max length is 6")
     @Column(name = "Dataid", length = 6)
     private String dataId;
 
+    @Size(max = 80, message = "ClntName max length is 80")
     @Column(name = "Clntname", length = 80)
     private String clntName;
 
+    @Size(max = 80, message = "ClntAddress max length is 80")
     @Column(name = "Clntaddress", length = 80)
     private String clntAddress;
 
     @Column(name = "Benpercent", length = 6, precision = 2)
     private Double benPercent;
 
+    @Size(max = 2, message = "Role1 max length is 2")
     @Column(length = 2)
     private String role1;
 
+    @Size(max = 2, message = "Role2 max length is 2")
     @Column(length = 2)
     private String role2;
 
+    @Size(max = 8, message = "CownNum max length is 8")
     @Column(name = "Cownnum", length = 8)
     private String cownNum;
 
+    @Size(max = 80, message = "CownName max length is 80")
     @Column(name = "Cownname", length = 80)
     private String cownName;
 
+    @Size(max = 80, message = "Notice01 max length is 80")
     @Column(length = 80)
     private String notice01;
 
+    @Size(max = 80, message = "Notice02 max length is 80")
     @Column(length = 80)
     private String notice02;
 
+    @Size(max = 80, message = "Notice03 max length is 80")
     @Column(length = 80)
     private String notice03;
 
+    @Size(max = 80, message = "Notice04 max length is 80")
     @Column(length = 80)
     private String notice04;
 
+    @Size(max = 80, message = "Notice05 max length is 80")
     @Column(length = 80)
     private String notice05;
 
+    @Size(max = 80, message = "Notice06 max length is 80")
     @Column(length = 80)
     private String notice06;
 

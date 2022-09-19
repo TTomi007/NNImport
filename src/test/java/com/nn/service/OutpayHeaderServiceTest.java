@@ -60,6 +60,15 @@ class OutpayHeaderServiceTest {
     }
 
     @Test
+    void saveAllInvalidDataTest() {
+        OutpayHeaderDto outpayHeaderDto = TestObjectInitializer.createOutpayHeaderDto();
+        List<OutpayHeaderDto> outpayHeaderDtos = List.of(outpayHeaderDto);
+        when(outpayHeaderRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
+        assertNull(savedOutpayHeaders);
+    }
+
+    @Test
     void saveAllTest() {
         OutpayHeaderDto outpayHeaderDto = TestObjectInitializer.createOutpayHeaderDto();
         List<OutpayHeaderDto> outpayHeaderDtos = List.of(outpayHeaderDto);

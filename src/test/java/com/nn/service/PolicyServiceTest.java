@@ -58,10 +58,18 @@ class PolicyServiceTest {
     }
 
     @Test
+    void saveAllInvalidDataTest() {
+        PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
+        List<PolicyDto> policyDtos = List.of(policyDto);
+        when(policyRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        List<Policy> savedPolicies = subject.saveAll(policyDtos);
+        assertNull(savedPolicies);
+    }
+
+    @Test
     void saveAllTest() {
         PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
         List<PolicyDto> policyDtos = List.of(policyDto);
-
         Policy mappedPolicy = TestObjectInitializer.createPolicy();
         List<Policy> mappedPolicies = List.of(mappedPolicy);
 

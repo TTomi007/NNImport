@@ -59,6 +59,15 @@ class SurValueServiceTest {
     }
 
     @Test
+    void saveAllInvalidDataTest() {
+        SurValueDto surValueDto = TestObjectInitializer.createSurValueDto();
+        List<SurValueDto> surValueDtos = List.of(surValueDto);
+        when(surValueRepository.saveAll(anyList())).thenThrow(new RuntimeException("invalid data"));
+        List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
+        assertNull(savedSurValues);
+    }
+
+    @Test
     void saveAllTest() {
         SurValueDto surValueDto = TestObjectInitializer.createSurValueDto();
         List<SurValueDto> surValueDtos = List.of(surValueDto);

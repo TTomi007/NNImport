@@ -43,7 +43,7 @@ class OutpayHeaderServiceTest {
     void saveAllEmptyListTest() {
         List<OutpayHeaderDto> outpayHeaderDtos = Collections.emptyList();
         List<OutpayHeader> mappedOutpayHeaders = Collections.emptyList();
-        when(outpayHeaderRepository.saveAll(anyList())).thenReturn(mappedOutpayHeaders);
+        when(outpayHeaderRepository.saveAll(mappedOutpayHeaders)).thenReturn(mappedOutpayHeaders);
         List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
         assertEquals(0, savedOutpayHeaders.size());
     }
@@ -77,31 +77,34 @@ class OutpayHeaderServiceTest {
         OutpayHeader mappedOutpayHeader = TestObjectInitializer.createOutpayHeader();
         List<OutpayHeader> mappedOutpayHeaders = List.of(mappedOutpayHeader);
 
-        when(outpayHeaderRepository.saveAll(anyList())).thenReturn(mappedOutpayHeaders);
-        List<OutpayHeader> savedOutpayHeaders = subject.saveAll(outpayHeaderDtos);
-        assertEquals(outpayHeaderDtos.size(), savedOutpayHeaders.size());
-        OutpayHeader savedOutpayHeader = savedOutpayHeaders.get(0);
-        assertEquals(42, savedOutpayHeader.getOutpayHeaderId());
-        assertEquals(outpayHeaderDto.clntNum(), savedOutpayHeader.getClntNum());
-        assertEquals(outpayHeaderDto.chdrNum(), savedOutpayHeader.getChdrNum());
-        assertEquals(outpayHeaderDto.letterType(), savedOutpayHeader.getLetterType());
-        assertEquals(outpayHeaderDto.printDate(), savedOutpayHeader.getPrintDate());
-        assertEquals(outpayHeaderDto.dataId(), savedOutpayHeader.getDataId());
-        assertEquals(outpayHeaderDto.clntName(), savedOutpayHeader.getClntName());
-        assertEquals(outpayHeaderDto.clntAddress(), savedOutpayHeader.getClntAddress());
-        assertEquals(outpayHeaderDto.benPercent(), savedOutpayHeader.getBenPercent());
-        assertEquals(outpayHeaderDto.role1(), savedOutpayHeader.getRole1());
-        assertEquals(outpayHeaderDto.role2(), savedOutpayHeader.getRole2());
-        assertEquals(outpayHeaderDto.cownNum(), savedOutpayHeader.getCownNum());
-        assertEquals(outpayHeaderDto.cownName(), savedOutpayHeader.getCownName());
-        assertEquals("Notice01", savedOutpayHeader.getNotice01());
-        assertEquals("Notice02", savedOutpayHeader.getNotice02());
-        assertEquals("Notice03", savedOutpayHeader.getNotice03());
-        assertEquals("Notice04", savedOutpayHeader.getNotice04());
-        assertEquals("Notice05", savedOutpayHeader.getNotice05());
-        assertEquals("Notice06", savedOutpayHeader.getNotice06());
+        OutpayHeader savedOutpayHeader = TestObjectInitializer.createSavedOutpayHeader();
+        List<OutpayHeader> savedOutpayHeaders = List.of(savedOutpayHeader);
+
+        when(outpayHeaderRepository.saveAll(mappedOutpayHeaders)).thenReturn(savedOutpayHeaders);
+        List<OutpayHeader> resultOutpayHeaders = subject.saveAll(outpayHeaderDtos);
+        assertEquals(outpayHeaderDtos.size(), resultOutpayHeaders.size());
+        OutpayHeader resultOutpayHeader = resultOutpayHeaders.get(0);
+        assertEquals(42, resultOutpayHeader.getOutpayHeaderId());
+        assertEquals(outpayHeaderDto.clntNum(), resultOutpayHeader.getClntNum());
+        assertEquals(outpayHeaderDto.chdrNum(), resultOutpayHeader.getChdrNum());
+        assertEquals(outpayHeaderDto.letterType(), resultOutpayHeader.getLetterType());
+        assertEquals(outpayHeaderDto.printDate(), resultOutpayHeader.getPrintDate());
+        assertEquals(outpayHeaderDto.dataId(), resultOutpayHeader.getDataId());
+        assertEquals(outpayHeaderDto.clntName(), resultOutpayHeader.getClntName());
+        assertEquals(outpayHeaderDto.clntAddress(), resultOutpayHeader.getClntAddress());
+        assertEquals(outpayHeaderDto.benPercent(), resultOutpayHeader.getBenPercent());
+        assertEquals(outpayHeaderDto.role1(), resultOutpayHeader.getRole1());
+        assertEquals(outpayHeaderDto.role2(), resultOutpayHeader.getRole2());
+        assertEquals(outpayHeaderDto.cownNum(), resultOutpayHeader.getCownNum());
+        assertEquals(outpayHeaderDto.cownName(), resultOutpayHeader.getCownName());
+        assertEquals("Notice01", resultOutpayHeader.getNotice01());
+        assertEquals("Notice02", resultOutpayHeader.getNotice02());
+        assertEquals("Notice03", resultOutpayHeader.getNotice03());
+        assertEquals("Notice04", resultOutpayHeader.getNotice04());
+        assertEquals("Notice05", resultOutpayHeader.getNotice05());
+        assertEquals("Notice06", resultOutpayHeader.getNotice06());
         LocalDate tp2ProcessDate = LocalDate.parse("20201212", DateTimeFormatter.BASIC_ISO_DATE);
-        assertEquals(tp2ProcessDate, savedOutpayHeader.getTp2ProcessDate());
+        assertEquals(tp2ProcessDate, resultOutpayHeader.getTp2ProcessDate());
     }
 
 }

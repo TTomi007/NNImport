@@ -41,7 +41,7 @@ class PolicyServiceTest {
     void saveAllEmptyListTest() {
         List<PolicyDto> policyDtos = Collections.emptyList();
         List<Policy> mappedPolicies = Collections.emptyList();
-        when(policyRepository.saveAll(anyList())).thenReturn(mappedPolicies);
+        when(policyRepository.saveAll(mappedPolicies)).thenReturn(mappedPolicies);
         List<Policy> savedPolicies = subject.saveAll(policyDtos);
         assertEquals(0, savedPolicies.size());
     }
@@ -71,22 +71,26 @@ class PolicyServiceTest {
     void saveAllTest() {
         PolicyDto policyDto = TestObjectInitializer.createPolicyDto();
         List<PolicyDto> policyDtos = List.of(policyDto);
+
         Policy mappedPolicy = TestObjectInitializer.createPolicy();
         List<Policy> mappedPolicies = List.of(mappedPolicy);
 
-        when(policyRepository.saveAll(anyList())).thenReturn(mappedPolicies);
-        List<Policy> savedPolicies = subject.saveAll(policyDtos);
-        assertEquals(policyDtos.size(), savedPolicies.size());
-        Policy savedPolicy = savedPolicies.get(0);
-        assertEquals(101, savedPolicy.getId());
-        assertEquals(policyDto.chdrNum(), savedPolicy.getChdrNum());
-        assertEquals(policyDto.cownNum(), savedPolicy.getCownNum());
-        assertEquals(policyDto.ownerName(), savedPolicy.getOwnerName());
-        assertEquals(policyDto.lifcNum(), savedPolicy.getLifcNum());
-        assertEquals(policyDto.lifcName(), savedPolicy.getLifcName());
-        assertEquals(policyDto.aracde(), savedPolicy.getAracde());
-        assertEquals(policyDto.agntNum(), savedPolicy.getAgntNum());
-        assertEquals(policyDto.mailAddress(), savedPolicy.getMailAddress());
+        Policy savedPolicy = TestObjectInitializer.createSavedPolicy();
+        List<Policy> savedPolicies = List.of(savedPolicy);
+
+        when(policyRepository.saveAll(mappedPolicies)).thenReturn(savedPolicies);
+        List<Policy> resultPolicies = subject.saveAll(policyDtos);
+        assertEquals(policyDtos.size(), resultPolicies.size());
+        Policy resultPolicy = resultPolicies.get(0);
+        assertEquals(101, resultPolicy.getId());
+        assertEquals(policyDto.chdrNum(), resultPolicy.getChdrNum());
+        assertEquals(policyDto.cownNum(), resultPolicy.getCownNum());
+        assertEquals(policyDto.ownerName(), resultPolicy.getOwnerName());
+        assertEquals(policyDto.lifcNum(), resultPolicy.getLifcNum());
+        assertEquals(policyDto.lifcName(), resultPolicy.getLifcName());
+        assertEquals(policyDto.aracde(), resultPolicy.getAracde());
+        assertEquals(policyDto.agntNum(), resultPolicy.getAgntNum());
+        assertEquals(policyDto.mailAddress(), resultPolicy.getMailAddress());
     }
 
 }

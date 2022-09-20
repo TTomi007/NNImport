@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "outpay_header")
@@ -253,5 +254,32 @@ public class OutpayHeader {
 
     public void setTp2ProcessDate(LocalDate tp2ProcessDate) {
         this.tp2ProcessDate = tp2ProcessDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OutpayHeader that = (OutpayHeader) o;
+        return Objects.equals(outpayHeaderId, that.outpayHeaderId)
+                && clntNum.equals(that.clntNum)
+                && chdrNum.equals(that.chdrNum)
+                && letterType.equals(that.letterType)
+                && printDate.equals(that.printDate)
+                && Objects.equals(dataId, that.dataId)
+                && Objects.equals(clntName, that.clntName)
+                && Objects.equals(clntAddress, that.clntAddress)
+                && Objects.equals(benPercent, that.benPercent)
+                && Objects.equals(role1, that.role1)
+                && Objects.equals(role2, that.role2)
+                && Objects.equals(cownNum, that.cownNum)
+                && Objects.equals(cownName, that.cownName)
+                && Objects.equals(notice01, that.notice01)
+                && Objects.equals(notice02, that.notice02)
+                && Objects.equals(notice03, that.notice03)
+                && Objects.equals(notice04, that.notice04)
+                && Objects.equals(notice05, that.notice05)
+                && Objects.equals(notice06, that.notice06)
+                && Objects.equals(tp2ProcessDate, that.tp2ProcessDate);
     }
 }

@@ -42,7 +42,7 @@ class SurValueServiceTest {
     void saveAllEmptyListTest() {
         List<SurValueDto> surValueDtos = Collections.emptyList();
         List<SurValue> mappedSurValues = Collections.emptyList();
-        when(surValueRepository.saveAll(anyList())).thenReturn(mappedSurValues);
+        when(surValueRepository.saveAll(mappedSurValues)).thenReturn(mappedSurValues);
         List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
         assertEquals(0, savedSurValues.size());
     }
@@ -76,15 +76,18 @@ class SurValueServiceTest {
         SurValue mappedSurValue = TestObjectInitializer.createSurValue();
         List<SurValue> mappedSurValues = List.of(mappedSurValue);
 
-        when(surValueRepository.saveAll(anyList())).thenReturn(mappedSurValues);
-        List<SurValue> savedSurValues = subject.saveAll(surValueDtos);
-        assertEquals(surValueDtos.size(), savedSurValues.size());
-        SurValue savedSurValue = savedSurValues.get(0);
-        assertEquals(1, savedSurValue.getId());
-        assertEquals(surValueDto.chdrNum(), savedSurValue.getChdrNum());
-        assertEquals(surValueDto.surrenderValue(), savedSurValue.getSurValue());
-        assertEquals(surValueDto.company(), savedSurValue.getCompany());
-        assertEquals("HUF", savedSurValue.getCurrency());
-        assertEquals(surValueDto.jobTimestamp(), LocalDate.parse(savedSurValue.getValidDate()));
+        SurValue savedSurValue = TestObjectInitializer.createSavedSurValue();
+        List<SurValue> savedSurValues = List.of(savedSurValue);
+
+        when(surValueRepository.saveAll(mappedSurValues)).thenReturn(savedSurValues);
+        List<SurValue> resultSurValues = subject.saveAll(surValueDtos);
+        assertEquals(surValueDtos.size(), resultSurValues.size());
+        SurValue resultSurValue = resultSurValues.get(0);
+        assertEquals(1, resultSurValue.getId());
+        assertEquals(surValueDto.chdrNum(), resultSurValue.getChdrNum());
+        assertEquals(surValueDto.surrenderValue(), resultSurValue.getSurValue());
+        assertEquals(surValueDto.company(), resultSurValue.getCompany());
+        assertEquals("HUF", resultSurValue.getCurrency());
+        assertEquals(surValueDto.jobTimestamp(), LocalDate.parse(resultSurValue.getValidDate()));
     }
 }

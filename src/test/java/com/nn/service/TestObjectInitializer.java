@@ -26,13 +26,18 @@ public class TestObjectInitializer {
 
     static SurValue createSurValue() {
         SurValue mappedSurValue = new SurValue();
-        mappedSurValue.setId(1);
         mappedSurValue.setChdrNum("42781365");
         mappedSurValue.setSurValue(312.34);
         mappedSurValue.setCompany("2");
         mappedSurValue.setCurrency("HUF");
         mappedSurValue.setValidDate("2020-10-10");
         return mappedSurValue;
+    }
+
+    static SurValue createSavedSurValue() {
+        SurValue savedSurValue = createSurValue();
+        savedSurValue.setId(1);
+        return savedSurValue;
     }
 
     static SurValueDto createSurValueDto() {
@@ -46,7 +51,6 @@ public class TestObjectInitializer {
 
     static OutpayHeader createOutpayHeader() {
         OutpayHeader mappedOutpayHeader = new OutpayHeader();
-        mappedOutpayHeader.setOutpayHeaderId(42);
         mappedOutpayHeader.setClntNum("55555555");
         mappedOutpayHeader.setChdrNum("66666666");
         mappedOutpayHeader.setLetterType("LET");
@@ -59,14 +63,20 @@ public class TestObjectInitializer {
         mappedOutpayHeader.setRole2("Role2");
         mappedOutpayHeader.setCownNum("11111111");
         mappedOutpayHeader.setCownName("Teszt Nóra");
-        mappedOutpayHeader.setNotice01("Notice01");
-        mappedOutpayHeader.setNotice02("Notice02");
-        mappedOutpayHeader.setNotice03("Notice03");
-        mappedOutpayHeader.setNotice04("Notice04");
-        mappedOutpayHeader.setNotice05("Notice05");
-        mappedOutpayHeader.setNotice06("Notice06");
-        mappedOutpayHeader.setTp2ProcessDate(LocalDate.parse("20201212", DateTimeFormatter.BASIC_ISO_DATE));
         return mappedOutpayHeader;
+    }
+
+    static OutpayHeader createSavedOutpayHeader() {
+        OutpayHeader savedOutpayHeader = createOutpayHeader();
+        savedOutpayHeader.setOutpayHeaderId(42);
+        savedOutpayHeader.setNotice01("Notice01");
+        savedOutpayHeader.setNotice02("Notice02");
+        savedOutpayHeader.setNotice03("Notice03");
+        savedOutpayHeader.setNotice04("Notice04");
+        savedOutpayHeader.setNotice05("Notice05");
+        savedOutpayHeader.setNotice06("Notice06");
+        savedOutpayHeader.setTp2ProcessDate(LocalDate.parse("20201212", DateTimeFormatter.BASIC_ISO_DATE));
+        return savedOutpayHeader;
     }
 
     static OutpayHeaderDto createOutpayHeaderDto() {
@@ -88,7 +98,6 @@ public class TestObjectInitializer {
 
     static Policy createPolicy() {
         Policy mappedPolicy = new Policy();
-        mappedPolicy.setId(101);
         mappedPolicy.setChdrNum("22222222");
         mappedPolicy.setCownNum("11111111");
         mappedPolicy.setOwnerName("Teszt Elek");
@@ -98,6 +107,12 @@ public class TestObjectInitializer {
         mappedPolicy.setAgntNum("11111");
         mappedPolicy.setMailAddress("4444 Baja Teszt utca 1.");
         return mappedPolicy;
+    }
+
+    static Policy createSavedPolicy() {
+        Policy savedPolicy = createPolicy();
+        savedPolicy.setId(101);
+        return savedPolicy;
     }
 
     static PolicyDto createPolicyDto() {

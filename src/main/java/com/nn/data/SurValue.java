@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table(name = "survalues")
 public class SurValue {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -84,5 +84,18 @@ public class SurValue {
 
     public void setValidDate(String validDate) {
         this.validDate = validDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SurValue surValue1 = (SurValue) o;
+        return Objects.equals(id, surValue1.id)
+                && chdrNum.equals(surValue1.chdrNum)
+                && surValue.equals(surValue1.surValue)
+                && company.equals(surValue1.company)
+                && Objects.equals(currency, surValue1.currency)
+                && Objects.equals(validDate, surValue1.validDate);
     }
 }

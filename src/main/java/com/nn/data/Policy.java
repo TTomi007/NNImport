@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 public class Policy {
@@ -119,5 +120,21 @@ public class Policy {
 
     public void setMailAddress(String mailAddress) {
         this.mailAddress = mailAddress;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Policy policy = (Policy) o;
+        return Objects.equals(id, policy.id)
+                && chdrNum.equals(policy.chdrNum)
+                && cownNum.equals(policy.cownNum)
+                && Objects.equals(ownerName, policy.ownerName)
+                && Objects.equals(lifcNum, policy.lifcNum)
+                && Objects.equals(lifcName, policy.lifcName)
+                && Objects.equals(aracde, policy.aracde)
+                && Objects.equals(agntNum, policy.agntNum)
+                && Objects.equals(mailAddress, policy.mailAddress);
     }
 }
